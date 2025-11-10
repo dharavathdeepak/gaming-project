@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="LuckyDeep Games Hub - Play thousands of free online games instantly! Action, puzzle, racing, IO games and more. No downloads required.">
+    <meta name="keywords" content="free games, online games, play games, action games, puzzle games, racing games, IO games, multiplayer games">
+    <meta name="author" content="LuckyDeep Games Hub">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://luckydeep-games.com/">
+    <meta property="og:title" content="LuckyDeep Games Hub - Free Online Games">
+    <meta property="og:description" content="Play thousands of free online games instantly! No downloads required.">
+    <meta property="og:image" content="https://luckydeep-games.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://luckydeep-games.com/">
+    <meta property="twitter:title" content="LuckyDeep Games Hub - Free Online Games">
+    <meta property="twitter:description" content="Play thousands of free online games instantly! No downloads required.">
+    <meta property="twitter:image" content="https://luckydeep-games.com/images/og-image.jpg">
+
+    <title>LuckyDeep Games Hub - Free Online Games | Play Now!</title>
+    <link rel="canonical" href="https://luckydeep-games.com/">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'game-primary': '#00ff88',
+                        'game-secondary': '#ff3366',
+                        'game-accent': '#0088ff',
+                        'game-dark': '#0a0a0a',
+                        'game-dark-light': '#1a1a1a',
+                        'game-gray': '#2a2a2a',
+                        'game-gray-light': '#3a3a3a'
+                    },
+                    fontFamily: {
+                        'game': ['Orbitron', 'monospace'],
+                        'sans': ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-in': 'slideIn 0.5s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+            to { box-shadow: 0 0 30px rgba(0, 255, 136, 0.8); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Button feedback styles */
+        #enhancedGameLike.liked i, 
+        #gameLike.liked i {
+            color: #00ff88 !important; /* Green */
+        }
+        
+        #enhancedGameDislike.disliked i,
+        #gameDislike.disliked i {
+            color: #ff3366 !important; /* Red */
+        }
+        
+        #enhancedGameReport.reported i,
+        #gameReport.reported i {
+            color: #ff9500 !important; /* Orange */
+        }
+        .game-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .game-thumbnail { aspect-ratio: 16/9; }
+        
+        /* Fix scrolling categories */
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Touch optimization */
+        @media (hover: none) {
+            .touch-manipulation {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* Larger touch targets on mobile */
+            .btn-mobile-friendly {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Active state for touch feedback */
+            .active-touch {
+                transform: scale(0.97);
+                transition: transform 0.1s;
+            }
+        }
+        
+        /* Category scroll container */
+        .category-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+            position: relative;
+        }
+        
+        .category-scroll::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari/Opera */
+        }
+        
+        /* Add visual feedback for touch devices */
+        @media (hover: none) {
+            .category-scroll::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 30px;
+                background: linear-gradient(to right, transparent, rgba(26, 26, 26, 0.8));
+                pointer-events: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-game-dark text-white font-sans">
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 w-full bg-game-dark-light/95 backdrop-blur-md z-50 border-b border-game-gray/30">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-game-primary to-game-accent rounded-lg flex items-center justify-center">
+                        <i class="fas fa-gamepad text-xl text-game-dark"></i>
+                    </div>
+                    <h1 class="text-2xl font-game font-bold bg-gradient-to-r from-game-primary to-game-accent bg-clip-text text-transparent">
+                        LuckyDeep Games
+                    </h1>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-game-primary transition-colors duration-200">Home</a>
+                    <a href="#trending" class="text-gray-300 hover:text-game-primary transition-colors duration-200">Trending</a>
+                    <a href="#new" class="text-gray-300 hover:text-game-primary transition-colors duration-200">New Games</a>
+                    <a href="#categories" class="text-gray-300 hover:text-game-primary transition-colors duration-200">Categories</a>
+                    <a href="#multiplayer" class="text-gray-300 hover:text-game-primary transition-colors duration-200">Multiplayer</a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search games..." 
+                               class="bg-game-gray border border-game-gray-light rounded-lg px-4 py-2 w-64 text-white placeholder-gray-400 focus:outline-none focus:border-game-primary focus:ring-1 focus:ring-game-primary">
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-game-primary transition-colors">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-2xl text-game-primary">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-300 hover:text-game-primary transition-colors duration-200">Home</a>
+                    <a href="#trending" class="text-gray-300 hover:text-game-primary transition-colors duration-200">Trending</a>
+                    <a href="#new" class="text-gray-300 hover:text-game-primary transition-colors duration-200">New Games</a>
+                    <a href="#categories" class="text-gray-300 hover:text-game-primary transition-colors duration-200">Categories</a>
+                    <a href="#multiplayer" class="text-gray-300 hover:text-game-primary transition-colors duration-200">Multiplayer</a>
+                    <div class="pt-2">
+                        <div class="relative">
+                            <input type="text" id="mobileSearchInput" placeholder="Search games..." 
+                                   class="bg-game-gray border border-game-gray-light rounded-lg px-4 py-3 w-full text-white placeholder-gray-400 focus:outline-none focus:border-game-primary text-base">
+                            <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-game-primary transition-colors">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 sm:pt-20 pb-8 sm:pb-12 bg-gradient-to-br from-game-dark via-game-dark-light to-game-gray min-h-screen flex items-center">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="space-y-4 sm:space-y-6 animate-slide-in text-center md:text-left">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-game font-bold leading-tight">
+                        <span class="bg-gradient-to-r from-game-primary via-game-accent to-game-primary bg-clip-text text-transparent">
+                            Play Games
+                        </span>
+                        <br>
+                        <span class="text-white">Instantly</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-gray-300 leading-relaxed">
+                        Discover thousands of free online games! No downloads, no waiting. Play action, puzzle, racing, IO games and more instantly in your browser.
+                    </p>
+                    
+                    <!-- Quick Play Buttons -->
+                    <div class="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start">
+                        <button id="playNowBtn" class="bg-gradient-to-r from-game-primary to-game-accent text-game-dark px-6 sm:px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-game-primary/30 transition-all duration-300 transform hover:scale-105 text-base sm:text-lg">
+                            <i class="fas fa-play mr-2"></i>Play Now
+                        </button>
+                        <button id="trendingGamesBtn" class="border-2 border-game-primary text-game-primary px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-game-primary hover:text-game-dark transition-all duration-300 text-base sm:text-lg">
+                            <i class="fas fa-fire mr-2"></i>Trending Games
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="flex space-x-4 sm:space-x-8 pt-4 sm:pt-6 hero-stats justify-center md:justify-start">
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-game-primary">5000</div>
+                            <div class="text-xs sm:text-sm text-gray-400">Free Games</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-game-primary">10000000</div>
+                            <div class="text-xs sm:text-sm text-gray-400">Players</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-game-primary">247</div>
+                            <div class="text-xs sm:text-sm text-gray-400">Available</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual -->
+                <div class="flex justify-center items-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 sm:w-80 sm:h-80 bg-gradient-to-r from-game-primary/20 to-game-accent/20 rounded-full flex items-center justify-center animate-float">
+                            <i class="fas fa-gamepad text-6xl sm:text-8xl text-game-primary animate-glow"></i>
+                        </div>
+                        <!-- Floating game icons -->
+                        <div class="absolute -top-4 -right-4 w-12 h-12 sm:w-16 sm:h-16 bg-game-gray rounded-xl flex items-center justify-center shadow-lg animate-float" style="animation-delay: 0.5s;">
+                            <i class="fas fa-trophy text-xl sm:text-2xl text-yellow-400"></i>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-12 h-12 sm:w-16 sm:h-16 bg-game-gray rounded-xl flex items-center justify-center shadow-lg animate-float" style="animation-delay: 1s;">
+                            <i class="fas fa-star text-xl sm:text-2xl text-game-accent"></i>
+                        </div>
+                        <div class="absolute top-1/2 -left-8 w-10 h-10 sm:w-12 sm:h-12 bg-game-gray rounded-lg flex items-center justify-center shadow-lg animate-float" style="animation-delay: 1.5s;">
+                            <i class="fas fa-bolt text-lg sm:text-xl text-game-secondary"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Navigation -->
+    <section id="categories" class="py-6 sm:py-8 bg-game-dark-light border-y border-game-gray/30">
+        <div class="container mx-auto px-4">
+            <div class="category-scroll">
+                <div class="flex space-x-3 sm:space-x-4 pb-4 min-w-max touch-pan-x">
+                    <a href="#all" class="flex items-center space-x-2 bg-game-primary hover:bg-game-primary/80 text-game-dark px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group font-semibold text-sm sm:text-base">
+                        <i class="fas fa-gamepad text-base sm:text-lg"></i>
+                        <span class="font-medium">All Games</span>
+                    </a>
+                    <a href="#action" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-fist-raised text-red-400 group-hover:text-white"></i>
+                        <span class="font-medium">Action</span>
+                    </a>
+                    <a href="#puzzle" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-puzzle-piece text-purple-400 group-hover:text-white"></i>
+                        <span class="font-medium">Puzzle</span>
+                    </a>
+                    <a href="#racing" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-car text-orange-400 group-hover:text-white"></i>
+                        <span class="font-medium">Racing</span>
+                    </a>
+                    <a href="#sports" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-football-ball text-green-400 group-hover:text-white"></i>
+                        <span class="font-medium">Sports</span>
+                    </a>
+                    <a href="#io" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-globe text-blue-400 group-hover:text-white"></i>
+                        <span class="font-medium">IO Games</span>
+                    </a>
+                    <a href="#multiplayer" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-users text-pink-400 group-hover:text-white"></i>
+                        <span class="font-medium">Multiplayer</span>
+                    </a>
+                    <a href="#casual" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-smile text-yellow-400 group-hover:text-white"></i>
+                        <span class="font-medium">Casual</span>
+                    </a>
+                    <a href="#adventure" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-map text-teal-400 group-hover:text-white"></i>
+                        <span class="font-medium">Adventure</span>
+                    </a>
+                    <a href="#strategy" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-chess text-indigo-400 group-hover:text-white"></i>
+                        <span class="font-medium">Strategy</span>
+                    </a>
+                    <a href="#shooter" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-crosshairs text-red-500 group-hover:text-white"></i>
+                        <span class="font-medium">Shooter</span>
+                    </a>
+                    <a href="#platformer" class="flex items-center space-x-2 bg-game-gray hover:bg-game-primary/20 px-4 sm:px-6 py-2 sm:py-3 rounded-lg whitespace-nowrap transition-all duration-300 group text-sm sm:text-base">
+                        <i class="fas fa-running text-cyan-400 group-hover:text-white"></i>
+                        <span class="font-medium">Platformer</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Category navigation arrows for mobile -->
+            <div class="flex justify-between mt-2 md:hidden">
+                <button id="scrollCategoriesLeft" class="bg-game-gray/70 rounded-full w-8 h-8 flex items-center justify-center text-white hover:bg-game-primary/70 focus:outline-none">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="scrollCategoriesRight" class="bg-game-gray/70 rounded-full w-8 h-8 flex items-center justify-center text-white hover:bg-game-primary/70 focus:outline-none">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Games Section (Hidden by default, shown when category is selected) -->
+    <section id="all-games" class="py-16 bg-game-dark" style="display: none;">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-game font-bold">
+                    <i class="fas fa-gamepad text-game-primary mr-3"></i>
+                    <span id="category-title">All Games</span>
+                </h2>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-400" id="games-count">Loading...</span>
+                    <button id="shuffle-games" class="text-game-primary hover:text-game-accent transition-colors duration-200 flex items-center space-x-2">
+                        <i class="fas fa-random"></i>
+                        <span>Shuffle</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6" id="allGamesContainer">
+                <!-- All games will be loaded dynamically -->
+                <div class="col-span-full text-center py-12">
+                    <div class="text-6xl text-gray-600 mb-4">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="text-xl text-gray-400 mb-2">No games loaded yet</h3>
+                    <p class="text-gray-500">Games will appear here once they are loaded</p>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-8">
+                <button id="loadMoreGames" class="bg-game-primary text-game-dark px-8 py-3 rounded-lg font-semibold hover:bg-game-accent transition-colors duration-300 transform hover:scale-105" style="display: none;">
+                    <i class="fas fa-plus mr-2"></i>Load More Games
+                </button>
+            </div>
+
+            <!-- Advanced Pagination Controls -->
+            <div id="paginationControls" class="mt-8" style="display: none;">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <!-- Page Info -->
+                    <div class="text-gray-400 text-sm">
+                        Page <span id="currentPageDisplay">1</span> of <span id="totalPagesDisplay">1</span>
+                        (<span id="startGameIndex">1</span>-<span id="endGameIndex">24</span> of <span id="totalGamesInCategory">0</span> games)
+                    </div>
+                    
+                    <!-- Pagination Buttons -->
+                    <div class="flex items-center space-x-2">
+                        <!-- First Page -->
+                        <button id="firstPageBtn" class="px-3 py-2 bg-game-gray hover:bg-game-primary hover:text-game-dark text-white rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        
+                        <!-- Previous Page -->
+                        <button id="prevPageBtn" class="px-4 py-2 bg-game-gray hover:bg-game-primary hover:text-game-dark text-white rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-chevron-left mr-1"></i> Prev
+                        </button>
+                        
+                        <!-- Page Numbers -->
+                        <div id="pageNumbers" class="flex items-center space-x-1">
+                            <!-- Dynamic page numbers will be inserted here -->
+                        </div>
+                        
+                        <!-- Next Page -->
+                        <button id="nextPageBtn" class="px-4 py-2 bg-game-gray hover:bg-game-primary hover:text-game-dark text-white rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                            Next <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                        
+                        <!-- Last Page -->
+                        <button id="lastPageBtn" class="px-3 py-2 bg-game-gray hover:bg-game-primary hover:text-game-dark text-white rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Page Jump -->
+                    <div class="flex items-center space-x-2">
+                        <span class="text-gray-400 text-sm">Go to:</span>
+                        <input type="number" id="pageJumpInput" class="w-16 px-2 py-1 bg-game-gray border border-game-primary/30 rounded text-white text-center text-sm focus:outline-none focus:border-game-primary" min="1" placeholder="1">
+                        <button id="pageJumpBtn" class="px-3 py-1 bg-game-primary text-game-dark rounded text-sm font-semibold hover:bg-game-accent transition-colors duration-200">
+                            Go
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Games per page selector -->
+                <div class="flex items-center justify-center mt-4 space-x-4">
+                    <span class="text-gray-400 text-sm">Games per page:</span>
+                    <select id="gamesPerPageSelect" class="bg-game-gray border border-game-primary/30 rounded px-3 py-1 text-white text-sm focus:outline-none focus:border-game-primary">
+                        <option value="12">12 games</option>
+                        <option value="24" selected>24 games</option>
+                        <option value="48">48 games</option>
+                        <option value="96">96 games</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recently Played Section -->
+    <section id="recently-played" class="py-16 bg-game-dark-light" style="display: none;">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-game font-bold">
+                    <i class="fas fa-history text-game-accent mr-3"></i>
+                    Recently Played
+                </h2>
+                <button id="clearRecentlyPlayed" class="text-gray-400 hover:text-red-400 transition-colors duration-200 flex items-center space-x-2">
+                    <span>Clear History</span>
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4" id="recentlyPlayedContainer">
+                <!-- Recently played games will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Games Section -->
+    <section id="trending" class="py-16 bg-game-dark">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-game font-bold">
+                    <i class="fas fa-fire text-game-secondary mr-3"></i>
+                    Trending Games
+                </h2>
+                <a href="#all-trending" class="text-game-primary hover:text-game-accent transition-colors duration-200 flex items-center space-x-2">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="trendingGamesContainer">
+                <!-- Trending games will be loaded dynamically -->
+                <div class="col-span-full text-center py-12">
+                    <div class="text-6xl text-gray-600 mb-4">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="text-xl text-gray-400 mb-2">No games loaded yet</h3>
+                    <p class="text-gray-500">Games will appear here once they are loaded</p>
+                </div>
+            </div>
+
+            <!-- Show More Button -->
+            <div class="text-center mt-8" id="trendingLoadMore">
+                <button class="bg-game-primary text-game-dark px-8 py-3 rounded-lg font-semibold hover:bg-game-accent transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-plus mr-2"></i>Load More Games
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Games Section -->
+    <section id="new" class="py-16 bg-game-dark-light">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-game font-bold">
+                    <i class="fas fa-sparkles text-yellow-400 mr-3"></i>
+                    New Games
+                </h2>
+                <a href="#all-new" class="text-game-primary hover:text-game-accent transition-colors duration-200 flex items-center space-x-2">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4" id="newGamesContainer">
+                <!-- New games will be loaded dynamically -->
+                <div class="col-span-full text-center py-12">
+                    <div class="text-6xl text-gray-600 mb-4">
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl text-gray-400 mb-2">No new games loaded yet</h3>
+                    <p class="text-gray-500">New games will appear here once they are loaded</p>
+                </div>
+            </div>
+
+            <!-- Show More Button -->
+            <div class="text-center mt-8" id="newLoadMore">
+                <button class="bg-game-primary text-game-dark px-8 py-3 rounded-lg font-semibold hover:bg-game-accent transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-refresh mr-2"></i>Load More New Games
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Most Played Games Section -->
+    <section id="popular" class="py-16 bg-game-dark">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-game font-bold">
+                    <i class="fas fa-fire text-red-500 mr-3"></i>
+                    Most Played Games
+                </h2>
+                <a href="#all-popular" class="text-game-primary hover:text-game-accent transition-colors duration-200 flex items-center space-x-2">
+                    <span>View All</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6" id="popularGamesContainer">
+                <!-- Popular games will be loaded dynamically -->
+                <div class="col-span-full text-center py-12">
+                    <div class="text-6xl text-gray-600 mb-4">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="text-xl text-gray-400 mb-2">No popular games loaded yet</h3>
+                    <p class="text-gray-500">Popular games will appear here once they are loaded</p>
+                </div>
+            </div>
+
+            <!-- Show More Button -->
+            <div class="text-center mt-8" id="popularLoadMore">
+                <button class="bg-game-primary text-game-dark px-8 py-3 rounded-lg font-semibold hover:bg-game-accent transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-fire mr-2"></i>Load More Popular Games
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-20 bg-gradient-to-r from-game-primary via-game-accent to-game-primary">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-game font-bold text-game-dark mb-6">
+                Ready to Start Playing?
+            </h2>
+            <p class="text-xl text-game-dark/80 mb-8 max-w-2xl mx-auto">
+                Join millions of players and discover your next favorite game. No downloads, no waiting - just pure gaming fun!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="bg-game-dark text-game-primary px-10 py-4 rounded-lg font-bold text-lg hover:bg-game-dark-light transition-colors duration-300 transform hover:scale-105">
+                    <i class="fas fa-rocket mr-2"></i>Start Playing Now
+                </button>
+                <button class="border-2 border-game-dark text-game-dark px-10 py-4 rounded-lg font-bold text-lg hover:bg-game-dark hover:text-game-primary transition-all duration-300">
+                    <i class="fas fa-bookmark mr-2"></i>Save Favorites
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-game-dark-light border-t border-game-gray/30">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-gradient-to-r from-game-primary to-game-accent rounded-lg flex items-center justify-center">
+                            <i class="fas fa-gamepad text-lg text-game-dark"></i>
+                        </div>
+                        <h3 class="text-xl font-game font-bold text-game-primary">LuckyDeep Games</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        The ultimate destination for free online games. Play thousands of games instantly in your browser.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-game-primary transition-colors duration-200">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-game-primary transition-colors duration-200">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-game-primary transition-colors duration-200">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-game-primary transition-colors duration-200">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Game Categories -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Game Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#action" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Action Games</a></li>
+                        <li><a href="#puzzle" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Puzzle Games</a></li>
+                        <li><a href="#racing" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Racing Games</a></li>
+                        <li><a href="#sports" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Sports Games</a></li>
+                        <li><a href="#io" class="text-gray-400 hover:text-game-primary transition-colors duration-200">IO Games</a></li>
+                        <li><a href="#multiplayer" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Multiplayer</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#trending" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Trending Games</a></li>
+                        <li><a href="#new" class="text-gray-400 hover:text-game-primary transition-colors duration-200">New Games</a></li>
+                        <li><a href="#popular" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Most Played</a></li>
+                        <li><a href="#random" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Random Game</a></li>
+                        <li><a href="#favorites" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Your Favorites</a></li>
+                        <li><a href="#recently" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Recently Played</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#contact" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Contact Us</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-game-primary transition-colors duration-200">FAQ</a></li>
+                        <li><a href="#privacy" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Privacy Policy</a></li>
+                        <li><a href="#terms" class="text-gray-400 hover:text-game-primary transition-colors duration-200">Terms of Service</a></li>
+                        <li><a href="#dmca" class="text-gray-400 hover:text-game-primary transition-colors duration-200">DMCA</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-game-primary transition-colors duration-200">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-game-gray/30 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 LuckyDeep Games Hub. All rights reserved. 
+                    <span class="text-game-primary">Play Free Games Online</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Game Player Container -->
+    <div id="gamePlayer" class="fixed inset-0 bg-black z-50 hidden">
+        <!-- Game Header -->
+        <div class="bg-game-dark border-b border-game-gray flex items-center justify-between px-4 py-3">
+            <div class="flex items-center space-x-4">
+                <button id="closeGame" class="text-gray-400 hover:text-white text-xl transition-colors duration-200">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div>
+                    <h3 id="gamePlayerTitle" class="text-white font-semibold">Game Title</h3>
+                    <p id="gamePlayerCategory" class="text-gray-400 text-sm">Category</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <!-- Rating buttons -->
+                <button id="gameLike" class="text-gray-400 hover:text-green-400 text-lg transition-colors duration-200 relative" title="Like this game">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span id="likeCount" class="absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full px-1.5 py-0.5 min-w-[20px] text-center hidden">0</span>
+                </button>
+                <button id="gameDislike" class="text-gray-400 hover:text-red-400 text-lg transition-colors duration-200 relative" title="Dislike this game">
+                    <i class="fas fa-thumbs-down"></i>
+                    <span id="dislikeCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5 min-w-[20px] text-center hidden">0</span>
+                </button>
+                <!-- Report button -->
+                <button id="gameReport" class="text-gray-400 hover:text-yellow-400 text-lg transition-colors duration-200" title="Report inappropriate content">
+                    <i class="fas fa-flag"></i>
+                </button>
+                <!-- Divider -->
+                <div class="w-px h-6 bg-gray-600"></div>
+                <!-- Control buttons -->
+                <button id="gameFullscreen" class="text-gray-400 hover:text-white text-lg transition-colors duration-200" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button id="gameReload" class="text-gray-400 hover:text-white text-lg transition-colors duration-200" title="Reload Game">
+                    <i class="fas fa-redo"></i>
+                </button>
+                <button id="gameFavorite" class="text-gray-400 hover:text-game-primary text-lg transition-colors duration-200" title="Add to Favorites">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Content -->
+        <div class="flex-1 h-full relative">
+            <!-- Game Loading Screen -->
+            <div id="gameLoading" class="absolute inset-0 bg-game-dark flex items-center justify-center">
+                <div class="text-center">
+                    <div class="animate-spin w-12 h-12 border-4 border-game-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p class="text-white text-lg font-semibold">Loading Game...</p>
+                    <p class="text-gray-400 text-sm mt-2">Please wait while we prepare your game</p>
+                </div>
+            </div>
+
+            <!-- Game Iframe -->
+        <iframe id="gameIframe" 
+            class="w-full h-full border-0" 
+            style="height: calc(100vh - 60px);"
+            allow="fullscreen *; autoplay *; gamepad *; clipboard-read *; clipboard-write *; camera *; microphone *; accelerometer *; gyroscope *; picture-in-picture *; xr-spatial-tracking *; encrypted-media *"
+            allowfullscreen
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-pointer-lock allow-orientation-lock allow-presentation">
+            </iframe>
+        </div>
+
+        <!-- Game Controls (Mobile) -->
+        <div id="gameControls" class="bg-game-dark/90 backdrop-blur-sm border-t border-game-gray p-3 flex flex-wrap justify-center items-center space-x-5 sm:space-x-4 xs:space-x-2 md:hidden">
+            <button class="bg-game-gray/80 hover:bg-game-gray active:bg-game-gray-light text-white px-4 py-3 rounded-lg text-lg sm:text-base xs:text-sm font-medium transition-colors duration-200 flex items-center touch-manipulation min-w-[80px] justify-center">
+                <i class="fas fa-pause mr-2"></i>Pause
+            </button>
+            <button class="bg-game-gray/80 hover:bg-game-gray active:bg-game-gray-light text-white px-4 py-3 rounded-lg text-lg sm:text-base xs:text-sm font-medium transition-colors duration-200 flex items-center touch-manipulation min-w-[80px] justify-center">
+                <i class="fas fa-redo mr-2"></i>Restart
+            </button>
+            <button class="bg-game-gray/80 hover:bg-game-gray active:bg-game-gray-light text-white px-4 py-3 rounded-lg text-lg sm:text-base xs:text-sm font-medium transition-colors duration-200 flex items-center touch-manipulation min-w-[80px] justify-center">
+                <i class="fas fa-volume-mute mr-2"></i>Mute
+            </button>
+        </div>
+    </div>
+
+    <!-- Game Modal (for game details) -->
+    <div id="gameModal" class="fixed inset-0 bg-black/90 z-40 hidden flex items-center justify-center p-4">
+        <div class="bg-game-gray rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="relative">
+                <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl z-10">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <!-- Game Screenshot/Preview -->
+                <div class="relative h-64 bg-gradient-to-br from-game-primary to-game-accent rounded-t-xl overflow-hidden">
+                    <div id="gameModalPreview" class="w-full h-full flex items-center justify-center">
+                        <i class="fas fa-gamepad text-6xl text-white/80"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h3 id="modalGameTitle" class="text-2xl font-bold text-white mb-1">Game Title</h3>
+                        <p id="modalGameCategory" class="text-white/80">Category</p>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <!-- Game Stats -->
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center text-yellow-400">
+                                <i class="fas fa-star mr-1"></i>
+                                <span id="modalGameRating" class="text-white font-semibold">4.5</span>
+                            </div>
+                            <div class="flex items-center text-gray-400">
+                                <i class="fas fa-users mr-1"></i>
+                                <span id="modalGamePlays" class="text-white">12M plays</span>
+                            </div>
+                            <div class="flex items-center text-gray-400">
+                                <i class="fas fa-clock mr-1"></i>
+                                <span class="text-white">Added 2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Game Description -->
+                    <div class="mb-6">
+                        <h4 class="text-white font-semibold mb-2">About this game</h4>
+                        <p id="modalGameDescription" class="text-gray-400 leading-relaxed">
+                            Experience amazing gameplay with stunning graphics and exciting challenges. Perfect for players of all skill levels!
+                        </p>
+                    </div>
+
+                    <!-- Game Tags -->
+                    <div class="mb-6">
+                        <h4 class="text-white font-semibold mb-2">Tags</h4>
+                        <div id="modalGameTags" class="flex flex-wrap gap-2">
+                            <span class="bg-game-primary/20 text-game-primary px-3 py-1 rounded-full text-sm">Action</span>
+                            <span class="bg-game-accent/20 text-game-accent px-3 py-1 rounded-full text-sm">Adventure</span>
+                        </div>
+                    </div>
+
+                    <!-- Play Button -->
+                    <div class="flex space-x-3">
+                        <button id="playGameBtn" class="bg-game-primary text-game-dark px-8 py-3 rounded-lg font-semibold hover:bg-game-accent transition-colors duration-200 flex-1 text-center">
+                            <i class="fas fa-play mr-2"></i>Play Now
+                        </button>
+                        <button id="favoriteGameBtn" class="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-500 transition-colors duration-200">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button id="shareGameBtn" class="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-500 transition-colors duration-200">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Modal - Mobile Optimized -->
+    <div id="reportModal" class="fixed inset-0 bg-black/90 z-[999] hidden flex items-center justify-center p-2 sm:p-4" style="display:none;">
+        <div class="bg-game-gray rounded-xl max-w-md w-full sm:w-4/5 md:w-3/4 lg:w-1/2 shadow-2xl transform transition-transform overflow-y-auto max-h-[95vh] sm:max-h-[85vh]">
+            <div class="p-4 sm:p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold text-white"><i class="fas fa-flag text-orange-500 mr-2"></i>Report Content</h3>
+                    <button id="closeReportModal" class="text-gray-400 hover:text-white text-xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div id="reportGameInfo" class="mb-4 p-3 bg-game-dark-light rounded-lg flex items-center">
+                    <img id="reportGameImage" src="" alt="Game" class="w-10 h-10 sm:w-12 sm:h-12 rounded object-cover mr-2 sm:mr-3">
+                    <div>
+                        <h4 id="reportGameName" class="font-medium text-white text-sm sm:text-base truncate max-w-[200px] sm:max-w-none"></h4>
+                        <p class="text-xs sm:text-sm text-gray-400">Please tell us what's wrong with this game</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-300 mb-2">Reason for reporting:</p>
+                <div id="reportReasonError" class="hidden text-red-500 text-sm mb-2">Please select a reason for reporting</div>
+                
+                <div class="space-y-1 sm:space-y-2 mb-4 sm:mb-5 bg-game-dark-light p-2 sm:p-3 rounded-lg">
+                    <label class="flex items-center space-x-3 cursor-pointer p-2 sm:p-3 hover:bg-game-gray-light/40 rounded-md transition-colors active:bg-game-gray-light/60 touch-manipulation">
+                        <input type="radio" name="reportReason" value="inappropriate" class="text-orange-500 accent-orange-500 w-4 h-4 sm:w-auto sm:h-auto">
+                        <span class="text-white text-sm sm:text-base">Inappropriate content</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer p-2 sm:p-3 hover:bg-game-gray-light/40 rounded-md transition-colors active:bg-game-gray-light/60 touch-manipulation">
+                        <input type="radio" name="reportReason" value="violence" class="text-orange-500 accent-orange-500 w-4 h-4 sm:w-auto sm:h-auto">
+                        <span class="text-white text-sm sm:text-base">Violence or harmful content</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer p-2 sm:p-3 hover:bg-game-gray-light/40 rounded-md transition-colors active:bg-game-gray-light/60 touch-manipulation">
+                        <input type="radio" name="reportReason" value="copyright" class="text-orange-500 accent-orange-500 w-4 h-4 sm:w-auto sm:h-auto">
+                        <span class="text-white text-sm sm:text-base">Copyright infringement</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer p-2 sm:p-3 hover:bg-game-gray-light/40 rounded-md transition-colors active:bg-game-gray-light/60 touch-manipulation">
+                        <input type="radio" name="reportReason" value="broken" class="text-orange-500 accent-orange-500 w-4 h-4 sm:w-auto sm:h-auto">
+                        <span class="text-white text-sm sm:text-base">Game not working</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer p-2 sm:p-3 hover:bg-game-gray-light/40 rounded-md transition-colors active:bg-game-gray-light/60 touch-manipulation">
+                        <input type="radio" name="reportReason" value="other" class="text-orange-500 accent-orange-500 w-4 h-4 sm:w-auto sm:h-auto">
+                        <span class="text-white text-sm sm:text-base">Other</span>
+                    </label>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="reportDetails" class="block text-gray-300 mb-2">Provide details:</label>
+                    <div id="reportDetailsError" class="hidden text-red-500 text-sm mb-2">Please provide some details about the issue</div>
+                    <textarea id="reportDetails" placeholder="Please describe the issue in detail..." 
+                             class="w-full p-3 bg-game-dark border border-gray-600 rounded-lg text-white placeholder-gray-400 mb-1 resize-none h-24 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 focus:outline-none"></textarea>
+                    <p class="text-xs text-gray-400">Your report will help us improve the gaming experience for everyone.</p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                    <button id="submitReport" class="bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white px-4 sm:px-6 py-3 sm:py-2 rounded-lg font-semibold transition-colors duration-200 flex-1 text-sm sm:text-base touch-manipulation">
+                        <i class="fas fa-paper-plane mr-2"></i>Submit Report
+                    </button>
+                    <button id="cancelReport" class="bg-gray-600 hover:bg-gray-500 active:bg-gray-700 text-white px-4 sm:px-6 py-3 sm:py-2 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base touch-manipulation">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-game-primary text-game-dark w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 opacity-0 invisible">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script src="js/mobile-responsive.js"></script>
+</body>
+</html>

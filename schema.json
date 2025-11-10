@@ -1,0 +1,63 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "LuckyDeep Games Hub",
+  "description": "Your ultimate destination for gaming news, reviews, guides, and the latest updates from the gaming world. Discover new games and connect with fellow gamers.",
+  "url": "https://luckydeep-games.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://luckydeep-games.com/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "LuckyDeep Games Hub",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://luckydeep-games.com/images/logo.png",
+      "width": 600,
+      "height": 60
+    },
+    "sameAs": [
+      "https://twitter.com/luckydeepgames",
+      "https://youtube.com/c/luckydeepgames",
+      "https://twitch.tv/luckydeepgames",
+      "https://discord.gg/luckydeepgames"
+    ]
+  },
+  "mainEntity": [
+    {
+      "@type": "Article",
+      "@id": "https://luckydeep-games.com/#gaming-reviews",
+      "headline": "Latest Gaming Reviews",
+      "description": "In-depth reviews of the latest video games across all platforms",
+      "author": {
+        "@type": "Organization",
+        "name": "LuckyDeep Games Hub"
+      }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://luckydeep-games.com/#gaming-guides",
+      "headline": "Gaming Guides and Walkthroughs",
+      "description": "Comprehensive guides to help you master your favorite games",
+      "author": {
+        "@type": "Organization",
+        "name": "LuckyDeep Games Hub"
+      }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://luckydeep-games.com/#gaming-news",
+      "headline": "Gaming News and Updates",
+      "description": "Stay updated with the latest news from the gaming industry",
+      "author": {
+        "@type": "Organization",
+        "name": "LuckyDeep Games Hub"
+      }
+    }
+  ]
+}
